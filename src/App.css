@@ -1,38 +1,150 @@
-.App {
-  text-align: center;
+/* --- 1. กำหนดสีหลัก (Tech Glow) --- */
+:root {
+  --tech-blue: #00cfff;
+  --tech-bg-dark: #0a0a0f; /* (เกือบดำ) */
+  --tech-surface: #1a1a24; /* (เทาเข้ม) */
+  --tech-text: #e0e0e0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
+/* --- ส่วนโค้ดเดิม (ไม่แก้ไข) --- */
+.App { text-align: center; }
+.App-logo { height: 40vmin; pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .App-logo { animation: App-logo-spin infinite 20s linear; }
+}
+.App-header { background-color: #282c34; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: calc(10px + 2vmin); color: white; }
+.App-link { color: #61dafb; }
+@keyframes App-logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* --- 1. Layout (ไม่แก้ไข) --- */
+.main-content-container {
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  min-height: 85vh;
+}
+
+
+/* --- 2. ธีมสีเข้ม "เทคโกลว์" (Tech Glow) --- */
+
+/* Card (สำหรับ Products/Home/About) */
+.card {
+  background-color: var(--tech-surface);
+  border: 1px solid #333;
+  color: var(--tech-text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.card:hover {
+  border-color: var(--tech-blue);
+  box-shadow: 0 0 15px rgba(0, 207, 255, 0.3);
+}
+.card-title {
+  color: var(--tech-blue); /* (Title สีฟ้า) */
+}
+
+/* Modal (Dark) */
+.modal-content {
+  background-color: var(--tech-surface);
+  border-color: #333;
+  color: var(--tech-text);
+}
+.modal-header, .modal-footer {
+  border-bottom-color: #333;
+  border-top-color: #333;
+}
+.form-control, .form-select {
+  background-color: var(--tech-bg-dark);
+  border-color: #333;
+  color: var(--tech-text);
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--tech-bg-dark);
+  border-color: var(--tech-blue);
+  box-shadow: 0 0 0 0.25rem rgba(0, 207, 255, 0.2);
+}
+.form-control::placeholder {
+  color: #888;
+}
+
+/* --- 3. สไตล์ Navbar "เทคโกลว์" --- */
+.navbar-tech-glow {
+  background-color: var(--tech-bg-dark) !important; 
+  border-bottom: 1px solid var(--tech-blue);
+  box-shadow: 0 2px 15px rgba(0, 207, 255, 0.2);
+}
+.navbar-tech-glow .navbar-brand {
+  color: #ffffff;
+  font-weight: bold;
+}
+.navbar-tech-glow .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+}
+.navbar-tech-glow .nav-link:hover {
+  color: var(--tech-blue);
+  text-shadow: 0 0 5px rgba(0, 207, 255, 0.5);
+}
+
+/* --- 4. สไตล์ Bento Grid (สำหรับ Home.jsx) --- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์ */
+  grid-template-rows: auto;
+  gap: 1.5rem; /* ระยะห่าง */
+}
+.bento-box-large {
+  grid-column: span 2; /* กล่องใหญ่กิน 2 ส่วน */
+}
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: 1fr; /* 1 คอลัมน์เมื่อจอมือถือ/แท็บเล็ต */
+  }
+  .bento-box-large {
+    grid-column: span 1; /* กล่องใหญ่ก็ 1 คอลัมน์ */
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* --- 5. สไตล์ Table (สำหรับ Customers.jsx) --- */
+.table-tech-glow {
+  background-color: var(--tech-surface);
+  border-color: #333;
+  color: var(--tech-text);
+}
+.table-tech-glow thead th {
+  background-color: var(--tech-bg-dark);
+  color: var(--tech-blue);
+  border-bottom: 2px solid var(--tech-blue);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.table-tech-glow.table-hover > tbody > tr:hover > * {
+  background-color: #2a2a3a;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+/* --- 6. สไตล์ Badge (สำหรับ Status) --- */
+.badge-status {
+  padding: 0.5em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+}
+.badge-status-pending {
+  background-color: #4a401c;
+  color: #ffc107;
+}
+.badge-status-approved {
+  background-color: #1c4a30;
+  color: #28a745;
+}
+.badge-status-rejected {
+  background-color: #4a1c23;
+  color: #dc3545;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fc-event {
+  color: #000000 !important; 
+  font-weight: 600;
 }
